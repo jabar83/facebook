@@ -1,7 +1,7 @@
 <!-- Nawigacja wewnętrz serwisu  -->
 <nav>
     <ul class="nav nav-pills"> 
-        <li class="nav-item"><a class="nav-link" routerLink="">Home</a></li>
-        <li class="nav-item"><a class="nav-link"  routerLink="/not_found">Not Found</a></li>
+        <li class="nav-item"><a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]=" {exact: true}" routerLink="">Home</a></li>
+        <li class="nav-item"><a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]=" {exact: true}" routerLink="/not_found">Not Found</a></li>
     </ul>
 </nav>
