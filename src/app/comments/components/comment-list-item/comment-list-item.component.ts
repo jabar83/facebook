@@ -16,10 +16,10 @@ export class CommentListItemComponent implements OnInit {
   }
 
   getCommentAuthorAvatarUrl() {
-    if (this.comment && this.comment.author) {
+    if (this.comment && this.comment.author && this.comment.author.avatarUrl) {
       return this.comment.author.avatarUrl;
     } else {
-      return 'http://placeskull.com/50/50/66aaff';
+      return "http://placeskull.com/50/50/66aaff";
     }
   }
 
