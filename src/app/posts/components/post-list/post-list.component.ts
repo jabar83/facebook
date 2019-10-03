@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import fakePosts from 'src/fakes/fake-posts'
 
 @Component({
@@ -8,7 +8,7 @@ import fakePosts from 'src/fakes/fake-posts'
 })
 export class PostListComponent implements OnInit {
 
-  posts = fakePosts;
+  @Input() posts = null;
 
   constructor() { }
 
