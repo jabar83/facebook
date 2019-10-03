@@ -14,4 +14,11 @@ export class PostListItemComponent implements OnInit {
   ngOnInit() {
   }
 
+  getPostUrl():string {
+    return `/posts/${this.post.id}`;
+  }
+  getPostAuthorAvatarUrl():string {
+    return this.post.author.avatarUrl;
+  }
+
 }
