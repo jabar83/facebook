@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { IPostList } from 'src/app/shared/interfaces/post-list.interface';
 import { sortByOperator } from 'src/app/shared/helpers/sorter.helper';
 import { environment } from 'src/environments/environment';
+import { find } from 'rxjs/operators';
+import { IPost } from 'src/app/shared/interfaces/post.interface';
 
 
 @Injectable({
@@ -14,16 +16,20 @@ export class PostsService {
     private http: HttpClient
   ) { }
 
-  async getPosts() {
+  async getPosts(): Promise<IPostList> {
     const url = environment.postsUrl
     let list = await this.http.get<IPostList>(url)
     .pipe(
       sortByOperator('createdTime')
       )
     .toPromise();
-    const newList = [...list];
-    ;
-    return newList;
+    return list;
 
+  }
+
+  async getPostById(postId: string): Promise<IPost>{
+    const url = environment.postsUrl
+    let list = await this.http.get<IPostList>(url).toPromise();
+    return list.find(post => post.id==postId);
   }
 }
