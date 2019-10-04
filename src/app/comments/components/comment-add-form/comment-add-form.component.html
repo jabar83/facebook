@@ -1,4 +1,7 @@
-<form (ngSubmit)="onSubmit(addForm)" #addForm="ngForm">
+<form
+    (ngSubmit)="onSubmit(addForm)"
+    #addForm="ngForm"
+>
     <div class="form-group row">
         <div class="col-9">
             <input
@@ -7,12 +10,29 @@
                 class="form-control"
                 placeholder="Wpisz komentarz"
                 [(ngModel)]="comment.body"
+                #body="ngModel"
+                required
+                minlength="2"
             >
+            <!-- <pre>touched:{{body.touched}}</pre>
+            <pre>untouched:{{body.untouched}}</pre>
+            <pre>pristine:{{body.dirty}}</pre>
+            <pre>pristine:{{body.pristine}}</pre>
+            <pre>valid:{{body.valid}}</pre>
+            <pre>invalid:{{body.invalid}}</pre>
+            
+            <pre>errors:{{body.errors | json}}</pre> -->
+
+            <ul *ngIf="body.errors && body.dirty" class="text-danger form-errors">
+                <li *ngIf="body.errors.required">Aby dodadać komentarz wpisz tekst</li>
+                <li *ngIf="body.errors.minlength">za mało znaków</li>
+            </ul>
         </div>
         <div class="col-2">
             <button
                 type="submit"
                 class="btn btn-primary"
+                [disabled]="addForm.invalid"
             >
                 Dodaj komentarz
             </button>
