@@ -23,7 +23,10 @@
             
             <pre>errors:{{body.errors | json}}</pre> -->
 
-            <ul *ngIf="body.errors && body.dirty" class="text-danger form-errors">
+            <ul
+                *ngIf="body.errors && body.dirty"
+                class="text-danger form-errors"
+            >
                 <li *ngIf="body.errors.required">Aby dodadać komentarz wpisz tekst</li>
                 <li *ngIf="body.errors.minlength">za mało znaków</li>
             </ul>
