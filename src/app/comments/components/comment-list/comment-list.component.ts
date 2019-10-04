@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ICommentList } from 'src/app/shared/interfaces/comment-list.interface';
 
 @Component({
@@ -8,20 +8,17 @@ import { ICommentList } from 'src/app/shared/interfaces/comment-list.interface';
 })
 export class CommentListComponent implements OnInit {
 
-  comments= [
-    {id: 'id1', body: 'body1'},
-    {id: 'id2', body: 'body2'},
-    {id: 'id3', body: 'body3'}
-  ] as ICommentList;
-
+  @Input() comments : ICommentList  = null;
+  
   constructor() { }
 
   ngOnInit() {
   }
 
   addCommentFunction(commentEvent){
-    console.log("Funkcja addCommentFunction została uruchomiona", commentEvent);
+    //console.log("Funkcja addCommentFunction została uruchomiona", commentEvent);
     this.comments.push(commentEvent);
+   
   }
 
 }

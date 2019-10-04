@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { IPost } from 'src/app/shared/interfaces/post.interface';
 
 @Component({
   selector: 'app-post-list-item',
@@ -7,11 +8,18 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PostListItemComponent implements OnInit {
 
-  @Input() post = null;
+  @Input() post: IPost = null;
 
   constructor() { }
 
   ngOnInit() {
+  }
+  //Zachodzi aktualizacja change detector widok / model 
+  ngOnChanges(change: SimpleChanges) {
+    //console.log('ngOnChanges:', change);
+    if (change.post && change.post.firstChange) {
+      this.post.comments = [];
+    }
   }
 
   getPostUrl(): string {

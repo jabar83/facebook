@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { IComment } from 'src/app/shared/interfaces/comment.interface';
 import uuid from 'uuid';
 import faker from 'faker';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -29,17 +30,18 @@ export class CommentAddFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(){
-    console.log("Submit button ", this.comment);
+  onSubmit(addForm: NgForm) {
+    //console.log("Submit button ", this.comment);
     const comment = Object.assign({}, this.comment);
     comment.id = uuid.v4();
     comment.createdTime = new Date().toString();
     comment.author.id = uuid.v4();
     comment.author.name = faker.name.findName();
-    comment.author.avatarUrl="http://placeskull.com/50/50/000000";
-    console.log("Submit comment ", comment);
-    this.comment.body=null;
+    comment.author.avatarUrl = "http://placeskull.com/50/50/000000";
+    //console.log("Submit comment ", comment);
     this.addCommentEvent.emit(comment);
+    addForm.reset();
+
   }
 
 }

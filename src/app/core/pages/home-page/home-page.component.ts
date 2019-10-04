@@ -24,7 +24,7 @@ export class HomePageComponent implements OnInit {
     try {
       this.posts = await this.postsService.getPosts();
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       this.error = err;
        
     }
