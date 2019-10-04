@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ICommentList } from 'src/app/shared/interfaces/comment-list.interface';
 import { IComment } from 'src/app/shared/interfaces/comment.interface';
 
@@ -14,6 +14,8 @@ export class CommentListComponent implements OnInit {
 
   @Input() comments: ICommentList = null;
 
+  @ViewChild('dialog', { static: true }) dialog = null;
+
   constructor() { }
 
   ngOnInit() {
@@ -25,17 +27,26 @@ export class CommentListComponent implements OnInit {
 
   }
 
-  deleteCommentFunction(commentEvent: IComment) {
-    console.log("Funkcja deleteCommentFunction została uruchomiona", commentEvent);
-    const idx = this.comments.indexOf(commentEvent);
+  deleteCommentFunctionWithConfirmation(commentEvent: IComment){
+    this.dialog.show();
+    this.dialog.__commentToRemove = commentEvent;
+  }
+
+  deleteCommentAndCloseFunction(){
+    this.deleteCommentFunction();
+    this.dialog.hide();
+  }
+
+
+  private deleteCommentFunction() {
+    console.log("Funkcja deleteCommentFunction została uruchomiona", this.dialog.__commentToRemove);
+    const idx = this.comments.indexOf(this.dialog.__commentToRemove);
     if (idx !== OUT_OF_BOUND_INDEX) {
       console.log("Funkcja deleteCommentFunction idx", idx);
       console.log("Funkcja deleteCommentFunction przed zmianie", this.comments.length);
       this.comments.splice(idx, 1);
       console.log("Funkcja deleteCommentFunction po zmianie", this.comments.length);
     }
-    //this.commentsthis.comments.filter(item => {item.id!= commentEvent.id});
-
   }
 
 }

@@ -1,17 +1,19 @@
 <app-comment-list-item
     *ngFor="let comment of comments"
     [comment]="comment"
-    (deleteCommentEvent)="deleteCommentFunction($event)"
+    (deleteCommentEvent)="deleteCommentFunctionWithConfirmation($event)"
 ></app-comment-list-item>
 
 <app-comment-add-form (addCommentEvent)="addCommentFunction($event)"></app-comment-add-form>
 
-<app-popup #dialog>
-    <div class="title">Elo Makrelo</div>
-    <div class="body">Czy na pewno chcesz to zrobić</div>
-    <div class="buttons">
-        <button class="btn btn-danger">Usuń post</button>
-        <button class="btn btn-light">Anuluj</button>
-    </div>
 
-</app-popup>
+<app-popup #dialog>
+        <div class="title">Elo Makrelo</div>
+        <div class="body">Czy na pewno chcesz to zrobić</div>
+        <div class="buttons">
+            <button (click) = "deleteCommentAndCloseFunction()" class="btn btn-danger">Usuń komentarz</button>
+            <button (click) = "dialog.hide()" class="btn btn-light">Anuluj</button>
+        </div>
+    
+    </app-popup>
+    
