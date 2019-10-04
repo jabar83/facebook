@@ -1,6 +1,7 @@
 <app-comment-list-item
 *ngFor="let comment of comments"
 [comment]="comment"
+(deleteCommentEvent)="deleteCommentFunction($event)"
 ></app-comment-list-item>
 
 <app-comment-add-form

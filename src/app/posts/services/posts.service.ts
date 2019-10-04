@@ -19,18 +19,17 @@ export class PostsService {
   async getPosts(): Promise<IPostList> {
     const url = environment.postsUrl
     let list = await this.http.get<IPostList>(url)
-    // .pipe(
-    //   sortByOperator('createdTime')
-    //   )
-    .toPromise();
-    sortBy<IPostList>(response, (post)=> new Date(post.))
+      .pipe(
+        sortByOperator('createdTime')
+      )
+      .toPromise();
     return list;
 
   }
 
-  async getPostById(postId: string): Promise<IPost>{
+  async getPostById(postId: string): Promise<IPost> {
     const url = environment.postsUrl
     let list = await this.http.get<IPostList>(url).toPromise();
-    return list.find(post => post.id==postId);
+    return list.find(post => post.id == postId);
   }
 }

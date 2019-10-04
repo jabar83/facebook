@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { IPost } from 'src/app/shared/interfaces/post.interface';
 
 @Component({
@@ -9,6 +9,7 @@ import { IPost } from 'src/app/shared/interfaces/post.interface';
 export class PostListItemComponent implements OnInit {
 
   @Input() post: IPost = null;
+  @Output() deletePostEvent = new EventEmitter();
 
   constructor() { }
 
@@ -33,6 +34,11 @@ export class PostListItemComponent implements OnInit {
       return this.post.author.avatarUrl;
     }
     return '';
+  }
+
+  executeDeletePost(){
+    console.log("Action delete pressed ", this.post);
+    this.deletePostEvent.emit(this.post);
   }
 
 }
