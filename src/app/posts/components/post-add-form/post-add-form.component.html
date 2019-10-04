@@ -1,6 +1,12 @@
-<div class="card my-3" appHighlight>
+<div
+    class="card my-3"
+    appHighlight
+>
     <div class="card-body">
-        <form [formGroup]="addPostForm" (submit)="onSubmit()">
+        <form
+            [formGroup]="addPostForm"
+            (submit)="onSubmit()"
+        >
             <div class="form-group row">
                 <div class="col-9">
                     <textarea
@@ -15,11 +21,20 @@
                     <button
                         type="submit"
                         class="btn btn-primary"
-                        
-                    >   
+                    >
                         Dodaj
                     </button>
                 </div>
+            </div>
+            <div class="form-group row">
+                dirty {{body.dirty}}
+                    valid {{body.valid}}
+                    s
+                <ul class="text-danger form-errors">
+                    <li *ngIf="body.dirty && body.invalid">Aby dodadać komentarz wpisz tekst</li>
+                    <li *ngIf="body.dirty && body.invalid">za mało znaków</li>
+                </ul>
+                s
             </div>
         </form>
     </div>
