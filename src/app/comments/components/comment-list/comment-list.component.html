@@ -3,4 +3,6 @@
 [comment]="comment"
 ></app-comment-list-item>
 
-<app-comment-add-form></app-comment-add-form>
+<app-comment-add-form
+ (addCommentEvent)="addCommentFunction($event)"
+></app-comment-add-form>

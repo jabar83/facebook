@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { IComment } from 'src/app/shared/interfaces/comment.interface';
+import uuid from 'uuid';
+import faker from 'faker';
+
 
 @Component({
   selector: 'app-comment-add-form',
@@ -7,13 +11,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentAddFormComponent implements OnInit {
 
+  comment = {
+    id: null,
+    createdTime: null,
+    author: {
+      id: null,
+      name: null,
+      avatarUrl: null
+    },
+    body: null
+  } as IComment;
+
+  @Output() addCommentEvent = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
   }
 
   onSubmit(){
-    console.log("Submit button");
+    console.log("Submit button ", this.comment);
+    const comment = Object.assign({}, this.comment);
+    comment.id = uuid.v4();
+    comment.createdTime = new Date().toString();
+    comment.author.id = uuid.v4();
+    comment.author.name = faker.name.findName();
+    comment.author.avatarUrl="http://placeskull.com/50/50/000000";
+    console.log("Submit comment ", comment);
+    this.comment.body=null;
+    this.addCommentEvent.emit(comment);
   }
 
 }
