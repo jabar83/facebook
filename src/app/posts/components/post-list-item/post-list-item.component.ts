@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { IPost } from 'src/app/shared/interfaces/post.interface';
 
 @Component({
   selector: 'app-post-list-item',
   templateUrl: './post-list-item.component.html',
-  styleUrls: ['./post-list-item.component.scss']
+  styleUrls: ['./post-list-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostListItemComponent implements OnInit {
 
