@@ -16,7 +16,8 @@ import { LoadingComponent } from './components/loading/loading.component';
   exports: [
     HighlightDirective,
     MyDatePipe,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule

@@ -30,4 +30,8 @@ export class HomePageComponent implements OnInit {
     }
   }
 
+  isDisplayLoader(){
+    return !(this.posts || this.error);
+  }
+
 }

@@ -5,6 +5,7 @@ import { ErrorMessageComponent } from './error-message.component';
 describe('ErrorMessageComponent', () => {
   let component: ErrorMessageComponent;
   let fixture: ComponentFixture<ErrorMessageComponent>;
+  let $component = null;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -16,8 +17,15 @@ describe('ErrorMessageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ErrorMessageComponent);
     component = fixture.componentInstance;
+    $component = fixture.nativeElement;
     fixture.detectChanges();
   });
+
+
+  afterEach(() => {
+    $component.remove();
+  })
+
 
   it('should create', () => {
     expect(component).toBeTruthy();
